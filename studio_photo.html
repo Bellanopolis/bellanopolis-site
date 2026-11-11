@@ -1303,23 +1303,33 @@ function upd(){tick=false;var y=window.scrollY||0;if(!on&&y>80){on=true;bar.clas
 window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});upd();})();
 </script>
 <style id="menu-hover">
-/* Menu: opens on hover on computers, no +/moins indicator */
+/* Menu: hover to open on computers, click the title to go to the page, no button, no +/moins */
 @media (hover: hover) and (pointer: fine) {
   .menu-svc-list .svc > summary .pm { display: none !important; }
   .menu-svc-list .svc > summary { grid-template-columns: 70px 1fr !important; }
+  .menu-svc-list .svc-body .btn { display: none !important; }
+  .menu-svc-list .svc > summary .svc-name::after { content: " \2192"; opacity: 0; transition: opacity .2s ease; }
+  .menu-svc-list .svc:hover > summary .svc-name::after, .menu-svc-list .svc[open] > summary .svc-name::after { opacity: 1; }
+}
+@media not ((hover: hover) and (pointer: fine)) {
+  .menu-svc-list .svc.no-sub > summary .pm { visibility: hidden; }
+  .menu-svc-list .svc.no-sub > summary .svc-name::after { content: " \2192"; }
 }
 </style>
 <script id="menu-hover-js">
 (function(){
-  if(!(window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches))return;
+  var desk=!!(window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches);
   document.querySelectorAll('.menu-svc-list').forEach(function(list){
     var items=list.querySelectorAll('details.svc'),t=null;
     function show(d){items.forEach(function(x){x.open=(x===d);});}
     items.forEach(function(d){
-      d.addEventListener('mouseenter',function(){clearTimeout(t);t=setTimeout(function(){show(d);},120);});
-      d.addEventListener('mouseleave',function(){clearTimeout(t);});
-      var s=d.querySelector('summary'),go=d.querySelector('.svc-body a.btn');
-      if(s)s.addEventListener('click',function(e){e.preventDefault();if(go)location.href=go.getAttribute('href');else show(d);});
+      var s=d.querySelector('summary'),go=d.querySelector('.svc-body a.btn'),sub=d.querySelector('.d-tags');
+      if(!sub)d.classList.add('no-sub');
+      if(desk){
+        d.addEventListener('mouseenter',function(){clearTimeout(t);t=setTimeout(function(){show(d);},120);});
+        d.addEventListener('mouseleave',function(){clearTimeout(t);});
+      }
+      if(s&&go&&(desk||!sub))s.addEventListener('click',function(e){e.preventDefault();location.href=go.getAttribute('href');});
     });
   });
 })();
