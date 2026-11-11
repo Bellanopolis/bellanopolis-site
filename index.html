@@ -636,6 +636,16 @@ details[open] > summary .pm-label, summary:focus-visible .pm-label { color: var(
 /* client list removed (the logo carousel already shows the clients): numbers take the full width */
 .numbers { grid-template-columns: minmax(0, 1fr); }
 </style>
+<style id="testi-grid">
+/* 5 testimonials: 2 columns, a line between rows, last one full width */
+@media (min-width: 901px) {
+  .t-grid .testi:nth-of-type(odd) { border-left: 0; }
+  .t-grid .testi:nth-of-type(even) { border-left: var(--line); }
+  .t-grid .testi:nth-of-type(n+3) { border-top: var(--line); }
+  .t-grid .testi:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
+  .t-grid .testi:last-of-type:nth-of-type(odd) blockquote { max-width: 70ch; }
+}
+</style>
 </head>
 <body>
 
@@ -1023,7 +1033,7 @@ if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.fo
       <div class="crosses tight right" aria-hidden="true"><span></span><span></span><span></span></div>
     </div>
   </div>
-  <div class="t-grid"><span class="red-sq center top" aria-hidden="true"></span><figure class="testi"><span class="guill" aria-hidden="true">«</span><blockquote>Kollektiv Paris est un partenaire de production exceptionnel. L'équipe a géré l'intégralité du tournage pour nous (espace, équipe, casting), et tout nous a paru plus calme et mieux préparé qu'avec une agence traditionnelle.</blockquote><figcaption>— Laura D.</figcaption></figure><figure class="testi"><span class="guill" aria-hidden="true">«</span><blockquote>Nous sommes venus pour l'espace seulement, et nous avons fini par construire un partenariat de contenu durable avec le réseau Kollektiv. Avoir tout en interne change vraiment le rythme d'une journée de tournage.</blockquote><figcaption>— Marc T.</figcaption></figure></div>
+  <div class="t-grid"><span class="red-sq center top" aria-hidden="true"></span><figure class="testi"><span class="guill" aria-hidden="true">«</span><blockquote>Installée dans les bureaux du Bellanopolis pour y organiser mes castings, j’y ai trouvé bien plus qu’un simple espace de travail : une vraie famille. Les studios et bureaux sont parfaitement équipés, fonctionnels et chaleureux. On s’y sent immédiatement à l’aise, dans un cadre professionnel et inspirant, idéal pour accueillir comédiens et équipes dans les meilleures conditions. Je recommande vivement l’équipe, et tout particulièrement Henrik et Eloy, qui sont d’une gentillesse et d’un professionnalisme remarquables. Toujours disponibles, accueillants et compétents, ils contribuent largement à faire de Bellanopolis un lieu unique. Un immense merci à eux 💛</blockquote><figcaption>Camille Paumier, Agence Cam</figcaption></figure><figure class="testi"><span class="guill" aria-hidden="true">«</span><blockquote>Bellanopolis, c’est avant tout un service très complet et des formules adaptées aux besoins de chacun de mes clients. Une équipe chaleureuse, à l’écoute, qui sait s’adapter à mes exigences pour des castings divers et variés. Le lieu est idéalement situé en plein centre de Paris.</blockquote><figcaption>Géraldine Canu, directrice de casting</figcaption></figure><figure class="testi"><span class="guill" aria-hidden="true">«</span><blockquote>Partenaires depuis des années, nous tournons régulièrement chez Bellanopolis : des studios bien équipés, une équipe toujours disponible et de bon conseil. Un vrai plaisir de travailler dans ce cadre pro et chaleureux.</blockquote><figcaption>Stella Motion</figcaption></figure><figure class="testi"><span class="guill" aria-hidden="true">«</span><blockquote>Les locaux de Bellanopolis, situés en plein cœur de Paris et récemment refaits à neuf, offrent de nombreuses possibilités. Son équipe, qui sait être à notre écoute et s’adapter à nos besoins, est à la fois chaleureuse et professionnelle.</blockquote><figcaption>KAPTIVE, management et production</figcaption></figure><figure class="testi"><span class="guill" aria-hidden="true">«</span><blockquote>Un studio idéalement situé au cœur de Paris, une équipe sympa et efficace, qui sait rester discrète… Les tarifs sont transparents (c’est rare !) et vraiment abordables. Attention, le café est très fort.</blockquote><figcaption>Antoine Legond, photographe et directeur artistique</figcaption></figure></div>
   <div class="t-foot"><div class="stripes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
 </section>
 
