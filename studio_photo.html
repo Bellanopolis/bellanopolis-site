@@ -1302,5 +1302,27 @@ document.querySelectorAll('a[href^="#studio-"]').forEach(function (a) { a.addEve
 function upd(){tick=false;var y=window.scrollY||0;if(!on&&y>80){on=true;bar.classList.add('is-compact');}else if(on&&y<20){on=false;bar.classList.remove('is-compact');}}
 window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});upd();})();
 </script>
+<style id="menu-hover">
+/* Menu: opens on hover on computers, no +/moins indicator */
+@media (hover: hover) and (pointer: fine) {
+  .menu-svc-list .svc > summary .pm { display: none !important; }
+  .menu-svc-list .svc > summary { grid-template-columns: 70px 1fr !important; }
+}
+</style>
+<script id="menu-hover-js">
+(function(){
+  if(!(window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches))return;
+  document.querySelectorAll('.menu-svc-list').forEach(function(list){
+    var items=list.querySelectorAll('details.svc'),t=null;
+    function show(d){items.forEach(function(x){x.open=(x===d);});}
+    items.forEach(function(d){
+      d.addEventListener('mouseenter',function(){clearTimeout(t);t=setTimeout(function(){show(d);},120);});
+      d.addEventListener('mouseleave',function(){clearTimeout(t);});
+      var s=d.querySelector('summary'),go=d.querySelector('.svc-body a.btn');
+      if(s)s.addEventListener('click',function(e){e.preventDefault();if(go)location.href=go.getAttribute('href');else show(d);});
+    });
+  });
+})();
+</script>
 </body>
 </html>
